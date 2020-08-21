@@ -25,43 +25,43 @@ const
   DATATARGETSTARTJ = 5;
   DATATARGETENDJ = DATAENDJ;
 
-function XToLeft(tmpX: integer): integer;
-function YToTop(tmpY: integer): integer;
-function XToRealX(tmpX: integer): integer;
-function YToRealY(tmpY: integer): integer;
-function RealXToX(tmpX: integer): integer;
-function RealYToY(tmpY: integer): integer;
+function XToLeft(x: integer): integer;
+function YToTop(y: integer): integer;
+function XToRealX(x: integer): integer;
+function YToRealY(y: integer): integer;
+function RealXToX(x: integer): integer;
+function RealYToY(y: integer): integer;
 
 implementation
 
-function XToLeft(tmpX: integer): integer;
+function XToLeft(x: integer): integer;
 begin
-  result := tmpX * MULX + STARTX;
+  result := x * MULX + STARTX;
 end;
 
-function YToTop(tmpY: integer): integer;
+function YToTop(y: integer): integer;
 begin
-  result := tmpY * MULY + STARTY;
+  result := y * MULY + STARTY;
 end;
 
-function XToRealX(tmpX: integer): integer;
+function XToRealX(x: integer): integer;
 begin
-  result := tmpX;
+  result := x;
 end;
 
-function YToRealY(tmpY: integer): integer;
+function YToRealY(y: integer): integer;
 begin
-  result := tmpY + 2;
+  result := y + 2;
 end;
 
-function RealXToX(tmpX: integer): integer;
+function RealXToX(x: integer): integer;
 begin
-  result := tmpX;
+  result := x;
 end;
 
-function RealYToY(tmpY: integer): integer;
+function RealYToY(y: integer): integer;
 begin
-  result := tmpY - 2;
+  result := y - 2;
 end;
 
 end.

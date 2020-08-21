@@ -39,10 +39,10 @@ type
     procedure SetFlag(const Value: boolean);
     procedure RefreshArm();
   public
-    constructor Create(const tmpParent: TWinControl; const tmpPosition: cardinal; const tmpVerticalLen: cardinal; const tmpHorizonLen: cardinal; const tmpHandLen: cardinal; const tmpVerticalColor: TColor; const tmpHorizonColor: TColor; const tmpHandColor: TColor); overload;
-    constructor Create(const tmpParent: TWinControl; const tmpStartX, tmpStartY, tmpX, tmpY: integer; const tmpVerticalColor: TColor; const tmpHorizonColor: TColor; const tmpHandColor: TColor); overload;
+    constructor Create(const parentControl: TWinControl; const position: cardinal; const verticalLen: cardinal; const horizonalLen: cardinal; const handLen: cardinal; const verticalColor: TColor; const horizonalColor: TColor; const handColor: TColor); overload;
+    constructor Create(const parentControl: TWinControl; const startX, startY, m, n: integer; const verticalColor: TColor; const horizonColor: TColor; const handColor: TColor); overload;
     destructor Destroy(); override;
-    procedure MoveTo(const tmpVerticalLen: integer; const tmpHorizonLen: integer; const tmpHandLen: integer);
+    procedure MoveTo(const verticalLen: integer; const horizonLen: integer; const handLen: integer);
     property VerticalLen: cardinal read FVerticalLen write SetVerticalLen;
     property HorizonLen: cardinal read FHorizonLen write SetHorizonLen;
     property HandLen: cardinal read FHandLen write SetHandLen;
@@ -55,72 +55,72 @@ type
     property Y: integer read FY write SetY;
     property MyObject: TMyObject read FMyObject write SetMyObject;
     property Flag: boolean read FFlag write SetFlag;
-    procedure VerticalMove(const tmpLen: integer);
-    procedure HorizonMove(const tmpLen: integer);
-    procedure HandMove(const tmpLen: integer);
-    procedure MoveToXY(const tmpX, tmpY: integer);
+    procedure VerticalMove(const len: integer);
+    procedure HorizonMove(const len: integer);
+    procedure HandMove(const len: integer);
+    procedure MoveToXY(const _x, _y: integer);
     procedure HandGoBack();
-    procedure HandGoY(const tmpY: integer);
+    procedure HandGoY(const _y: integer);
     procedure HorizonGoBack();
-    procedure HorizonGoX(const tmpX: integer);
-    procedure HorizonGoXDirectly(const tmpX: integer);
-    procedure HandGoYDirectly(const tmpY: integer);
-    procedure MoveToXYDirectly(const tmpX, tmpY: integer);
+    procedure HorizonGoX(const _x: integer);
+    procedure HorizonGoXDirectly(const _x: integer);
+    procedure HandGoYDirectly(const _y: integer);
+    procedure MoveToXYDirectly(const _x, _y: integer);
   end;
 
 implementation
 
 { TArm }
 
-constructor TArm.Create(const tmpParent: TWinControl; const tmpPosition: cardinal; const tmpVerticalLen: cardinal; const tmpHorizonLen: cardinal; const tmpHandLen: cardinal; const tmpVerticalColor: TColor; const tmpHorizonColor: TColor; const tmpHandColor: TColor);
+constructor TArm.Create(const parentControl: TWinControl; const position: cardinal; const verticalLen: cardinal; const horizonalLen: cardinal; const handLen: cardinal; const verticalColor: TColor; const horizonalColor: TColor; const handColor: TColor);
 begin
-  FParent := tmpParent;
+  FParent := parentControl;
 
   FArmVertical := TMyPanel.Create(nil);
   FArmVertical.Parent := FParent;
-  FArmVertical.Left := tmpPosition;
+  FArmVertical.Left := position;
   FArmVertical.Width := LEN;
-  FArmVertical.Height := tmpVerticalLen;
+  FArmVertical.Height := verticalLen;
   FArmVertical.Top := STARTY div 7;
   FArmVertical.Show;
-  FVerticalLen := tmpVerticalLen;
+  FVerticalLen := verticalLen;
   FInterval := 5;
 
   FArmHorizon := TMyPanel.Create(nil);
   FArmHorizon.Parent := FParent;
   FArmHorizon.Left := FArmVertical.Left + FArmVertical.Width;
   FArmHorizon.Top := FArmVertical.Top;
-  FArmHorizon.Width := tmpHorizonLen;
+  FArmHorizon.Width := horizonalLen;
   FArmHorizon.Height := LEN;
   FArmHorizon.Show;
-  FHorizonLen := tmpHorizonLen;
+  FHorizonLen := horizonalLen;
 
   FArmHand := TMyPanel.Create(nil);
   FArmHand.Parent := FParent;
   FArmHand.Width := LEN;
   FArmHand.Left := FArmHorizon.Left + FArmHorizon.Width - FArmHand.Width;
-  FArmHand.Height := tmpHandLen;
+  FArmHand.Height := handLen;
   FArmHand.Top := FArmVertical.Top + FArmHorizon.Height;
-  FHandLen := tmpHandLen;
+  FHandLen := handLen;
   FArmHand.Show;
 
-  FArmVertical.SelfColor := tmpVerticalColor;
-  FArmHorizon.SelfColor := tmpHorizonColor;
-  FArmHand.SelfColor := tmpHandColor;
+  FArmVertical.SelfColor := verticalColor;
+  FArmHorizon.SelfColor := horizonalColor;
+  FArmHand.SelfColor := handColor;
 
   Self.Flag := false;
   Self.MyObject := nil;
 end;
 
-constructor TArm.Create(const tmpParent: TWinControl; const tmpStartX, tmpStartY, tmpX, tmpY: integer; const tmpVerticalColor: TColor; const tmpHorizonColor: TColor; const tmpHandColor: TColor);
+constructor TArm.Create(const parentControl: TWinControl; const startX, startY, m, n: integer; const verticalColor: TColor; const horizonColor: TColor; const handColor: TColor);
 begin
-  FParent := tmpParent;
+  FParent := parentControl;
 
   FArmVertical := TMyPanel.Create(nil);
   FArmVertical.Parent := FParent;
-  FArmVertical.Left := tmpStartX;
+  FArmVertical.Left := startX;
   FArmVertical.Width := LEN;
-  FArmVertical.Top := tmpStartY + LEN * 2;
+  FArmVertical.Top := startY + LEN * 2;
   FArmVertical.Height := LEN * MAXJ - LEN;
   FArmVertical.Show;
   FVerticalLen := LEN * MAXJ;
@@ -129,7 +129,7 @@ begin
   FArmHorizon.Parent := FParent;
   FArmHorizon.Left := FArmVertical.Left + FArmVertical.Width;
   FArmHorizon.Top := FArmVertical.Top;
-  FArmHorizon.Width := LEN * (tmpX);
+  FArmHorizon.Width := LEN * (m);
   FArmHorizon.Height := LEN;
   FArmHorizon.Show;
   FHorizonLen := LEN * 2;
@@ -139,19 +139,19 @@ begin
   FArmHand.Width := LEN;
   FArmHand.Left := FArmHorizon.Left + FArmHorizon.Width - FArmHand.Width;
   FArmHand.Top := FArmVertical.Top + FArmHorizon.Height;
-  FArmHand.Height := LEN * tmpY;
+  FArmHand.Height := LEN * n;
   FHandLen := LEN;
   FArmHand.Show;
 
-  Self.X := (tmpX);
-  Self.Y := (tmpY);
+  Self.X := (m);
+  Self.Y := (n);
 
-  FArmVertical.SelfColor := tmpVerticalColor;
-  FArmHorizon.SelfColor := tmpHorizonColor;
-  FArmHand.SelfColor := tmpHandColor;
+  FArmVertical.SelfColor := verticalColor;
+  FArmHorizon.SelfColor := horizonColor;
+  FArmHand.SelfColor := handColor;
 
   Self.Interval := 0;
-  Self.MoveToXYDirectly(tmpX, tmpY);
+  Self.MoveToXYDirectly(m, n);
 end;
 
 destructor TArm.Destroy;
@@ -169,30 +169,30 @@ begin
   Y := 1;
 end;
 
-procedure TArm.HandGoY(const tmpY: integer);
+procedure TArm.HandGoY(const _y: integer);
 begin
   HandGoBack;
-  if Y = tmpY then exit;
-  Self.HandMove((tmpY - Y)* LEN);
-  Y := tmpY;
+  if Y = _y then exit;
+  Self.HandMove((_y - Y)* LEN);
+  Y := _y;
 end;
 
-procedure TArm.HandGoYDirectly(const tmpY: integer);
+procedure TArm.HandGoYDirectly(const _y: integer);
 begin
-  if Y = tmpY then exit;
-  Self.HandMove((tmpY - Y) * LEN);
-  Y := tmpY;
+  if Y = _y then exit;
+  Self.HandMove((_y - Y) * LEN);
+  Y := _y;
 end;
 
-procedure TArm.HandMove(const tmpLen: integer);
+procedure TArm.HandMove(const len: integer);
 var
-  tmpCurrentHeight, tmpNewHeight, i: integer;
+  currentHeight, newHeight, i: integer;
 begin
-  tmpCurrentHeight := FArmHand.Height;
-  if tmpLen > 0 then
+  currentHeight := FArmHand.Height;
+  if len > 0 then
   begin
-    tmpNewHeight := tmpCurrentHeight + abs(tmpLen);
-    for i := tmpCurrentHeight to tmpNewHeight do
+    newHeight := currentHeight + abs(len);
+    for i := currentHeight to newHeight do
     begin
       sleep(FInterval);
       FArmHand.Height := i;
@@ -205,8 +205,8 @@ begin
     end;
 //    Windows.Beep(3000, 10);
   end else begin
-    tmpNewHeight := tmpCurrentHeight - abs(tmpLen);
-    for i := tmpCurrentHeight downto tmpNewHeight do
+    newHeight := currentHeight - abs(len);
+    for i := currentHeight downto newHeight do
     begin
       sleep(FInterval);
       FArmHand.Height := i;
@@ -228,30 +228,30 @@ begin
   X := 1;
 end;
 
-procedure TArm.HorizonGoX(const tmpX: integer);
+procedure TArm.HorizonGoX(const _x: integer);
 begin
   HorizonGoBack;
-  if X = tmpX then exit;
-  Self.HorizonMove(LEN * (tmpX - X));
-  X := tmpX;
+  if X = _x then exit;
+  Self.HorizonMove(LEN * (_x - X));
+  X := _x;
 end;
 
-procedure TArm.HorizonGoXDirectly(const tmpX: integer);
+procedure TArm.HorizonGoXDirectly(const _x: integer);
 begin
-  if X = tmpX then exit;
-  Self.HorizonMove((tmpX - X) * LEN);
-  X := tmpX;
+  if X = _x then exit;
+  Self.HorizonMove((_x - X) * LEN);
+  X := _x;
 end;
 
-procedure TArm.HorizonMove(const tmpLen: integer);
+procedure TArm.HorizonMove(const len: integer);
 var
-  tmpCurrentWidth, tmpNewWidth, i: integer;
+  currentWidth, newWidth, i: integer;
 begin
-  tmpCurrentWidth := FArmHorizon.Width;
-  if tmpLen > 0 then
+  currentWidth := FArmHorizon.Width;
+  if len > 0 then
   begin
-    tmpNewWidth := tmpCurrentWidth + abs(tmpLen);
-    for i := tmpCurrentWidth to tmpNewWidth do
+    newWidth := currentWidth + abs(len);
+    for i := currentWidth to newWidth do
     begin
       sleep(FInterval);
       FArmHorizon.Width := i;
@@ -266,8 +266,8 @@ begin
     end;
 //    Windows.Beep(2000, 10);
   end else begin
-    tmpNewWidth := tmpCurrentWidth - abs(tmpLen);
-    for i := tmpCurrentWidth downto tmpNewWidth do
+    newWidth := currentWidth - abs(len);
+    for i := currentWidth downto newWidth do
     begin
       sleep(FInterval);
       FArmHorizon.Width := i;
@@ -284,36 +284,36 @@ begin
   end;
 end;
 
-procedure TArm.VerticalMove(const tmpLen: integer);
+procedure TArm.VerticalMove(const len: integer);
 var
-  tmpCurrentHeight, tmpCurrentTop, tmpNewTop, i: integer;
+  currentHeight, currentTop, newTop, i: integer;
 begin
-  tmpCurrentHeight := FArmVertical.Height;
-  tmpCurrentTop := FArmVertical.Top;
-  if tmpLen > 0 then
+  currentHeight := FArmVertical.Height;
+  currentTop := FArmVertical.Top;
+  if len > 0 then
   begin
-    tmpNewTop := tmpCurrentTop - abs(tmpLen);
-    for i := tmpCurrentTop downto tmpNewTop do
+    newTop := currentTop - abs(len);
+    for i := currentTop downto newTop do
     begin
       sleep(FInterval);
       FArmVertical.Top := i;
       FVerticalLen := i;
       FArmHorizon.Top := i;
-      FArmVertical.Height := tmpCurrentHeight - (i - tmpCurrentTop);
+      FArmVertical.Height := currentHeight - (i - currentTop);
       FArmHand.Top := FArmVertical.Top + FArmHorizon.Height;
       RefreshArm;
       Application.ProcessMessages;
     end;
 //    Windows.Beep(1000, 10);
   end else begin
-    tmpNewTop := tmpCurrentTop + abs(tmpLen);
-    for i := tmpCurrentTop to tmpNewTop do
+    newTop := currentTop + abs(len);
+    for i := currentTop to newTop do
     begin
       sleep(FInterval);
       FArmVertical.Top := i;
       FVerticalLen := i;
       FArmHorizon.Top := i;
-      FArmVertical.Height := tmpCurrentHeight - (i - tmpCurrentTop);
+      FArmVertical.Height := currentHeight - (i - currentTop);
       FArmHand.Top := FArmVertical.Top + FArmHorizon.Height;
       RefreshArm;
       Application.ProcessMessages;
@@ -322,25 +322,25 @@ begin
   end;
 end;
 
-procedure TArm.MoveTo(const tmpVerticalLen, tmpHorizonLen,
-  tmpHandLen: integer);
+procedure TArm.MoveTo(const verticalLen, horizonLen,
+  handLen: integer);
 begin
-  Self.VerticalMove(tmpVerticalLen);
-  Self.HorizonMove(tmpHorizonLen);
-  Self.HandMove(tmpHandLen);
+  Self.VerticalMove(verticalLen);
+  Self.HorizonMove(horizonLen);
+  Self.HandMove(handLen);
 end;
 
-procedure TArm.MoveToXY(const tmpX, tmpY: integer);
+procedure TArm.MoveToXY(const _x, _y: integer);
 begin
-  Self.HorizonGoX(RealXToX(tmpX));
-  Self.HandGoY(RealYToY(tmpY));
+  Self.HorizonGoX(RealXToX(_x));
+  Self.HandGoY(RealYToY(_y));
 end;
 
-procedure TArm.MoveToXYDirectly(const tmpX, tmpY: integer);
+procedure TArm.MoveToXYDirectly(const _x, _y: integer);
 begin
   Self.HandGoBack;
-  Self.HorizonGoXDirectly(RealXToX(tmpX));
-  Self.HandGoYDirectly(RealYToY(tmpY));
+  Self.HorizonGoXDirectly(RealXToX(_x));
+  Self.HandGoYDirectly(RealYToY(_y));
 end;
 
 procedure TArm.RefreshArm;

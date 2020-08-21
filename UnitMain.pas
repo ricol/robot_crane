@@ -49,8 +49,8 @@ type
     procedure MenuGameExitClick(Sender: TObject);
     procedure MenuHelpAboutClick(Sender: TObject);
   private
-    function GetNextIJ(var tmpI, tmpJ: integer): boolean;
-    function GetNextTargetIJ(var tmpI, tmpJ: integer): boolean;
+    function GetNextIJ(var m, n: integer): boolean;
+    function GetNextTargetIJ(var m, n: integer): boolean;
     { Private declarations }
   public
     { Public declarations }
@@ -90,7 +90,7 @@ begin
       FreeAndNil(GMyObjectArray[i, j]);
 end;
 
-function TFormMain.GetNextIJ(var tmpI, tmpJ: integer): boolean;
+function TFormMain.GetNextIJ(var m, n: integer): boolean;
 var
   i, j: Integer;
 begin
@@ -100,15 +100,15 @@ begin
     begin
       if GMyObjectArray[i, j] <> nil then
       begin
-        tmpI := i;
-        tmpJ := j;
+        m := i;
+        n := j;
         result := true;
         exit;
       end;
     end;
 end;
 
-function TFormMain.GetNextTargetIJ(var tmpI, tmpJ: integer): boolean;
+function TFormMain.GetNextTargetIJ(var m, n: integer): boolean;
 var
   i: Integer;
   j: Integer;
@@ -119,8 +119,8 @@ begin
     begin
       if GMyObjectArray[i, j] = nil then
       begin
-        tmpI := i;
-        tmpJ := j;
+        m := i;
+        n := j;
         result := true;
         exit;
       end;
@@ -269,26 +269,26 @@ end;
 
 procedure TFormMain.MenuGameRearrangeClick(Sender: TObject);
 var
-  i, j, tmpI, tmpJ: Integer;
+  i, j, m, n: Integer;
 begin
-  tmpI := DATASTARTI;
-  tmpJ := DATASTARTJ;
+  m := DATASTARTI;
+  n := DATASTARTJ;
   for i := DATATARGETSTARTI to DATATARGETENDI do
     for j := DATATARGETSTARTJ to DATATARGETENDJ do
     begin
       if GMyObjectArray[i, j] <> nil then
       begin
-        GMyObjectArray[tmpI, tmpJ] := GMyObjectArray[i, j];
+        GMyObjectArray[m, n] := GMyObjectArray[i, j];
         GMyObjectArray[i, j] := nil;
-        GMyObjectArray[tmpI, tmpJ].X := tmpI;
-        GMyObjectArray[tmpI, tmpJ].Y := tmpJ;
-        GMyObjectArray[tmpI, tmpJ].ShowPosition;
-        GMyObjectArray[tmpI, tmpJ].Caption := format('%2d-%2d', [tmpI, tmpJ]);
-        inc(tmpJ);
-        if tmpJ > DATAENDJ then
+        GMyObjectArray[m, n].X := m;
+        GMyObjectArray[m, n].Y := n;
+        GMyObjectArray[m, n].ShowPosition;
+        GMyObjectArray[m, n].Caption := format('%2d-%2d', [m, n]);
+        inc(n);
+        if n > DATAENDJ then
         begin
-          tmpJ := DATASTARTJ;
-          inc(tmpI);
+          n := DATASTARTJ;
+          inc(m);
         end;
       end;
     end;
@@ -302,8 +302,8 @@ end;
 
 procedure TFormMain.MenuGameRunClick(Sender: TObject);
 var
-  i, j, tmpI, tmpJ: integer;
-  tmpSourceResult, tmpTargetResult: boolean;
+  i, j, m, n: integer;
+  sourceResult, targetResult: boolean;
 begin
   if GArm = nil then exit;
   MenuGameCreateAll.Enabled := false;
@@ -318,11 +318,11 @@ begin
   MenuArmDestroy.Enabled := false;
   MenuProductCreate.Enabled := false;
   MenuProductDestroy.Enabled := false;
-  tmpSourceResult := GetNextIJ(i, j);
-  while tmpSourceResult do
+  sourceResult := GetNextIJ(i, j);
+  while sourceResult do
   begin
-    tmpTargetResult := GetNextTargetIJ(tmpI, tmpJ);
-    if not tmpTargetResult then
+    targetResult := GetNextTargetIJ(m, n);
+    if not targetResult then
     begin
       Windows.Beep(1000, 100);
       GArm.Flag := false;
@@ -332,13 +332,13 @@ begin
     GArm.MoveToXYDirectly(i, j - 1);
     GArm.Flag := true;
     GArm.MyObject := GMyObjectArray[i, j];
-    GArm.MoveToXYDirectly(tmpI, tmpJ - 1);
-    GMyObjectArray[tmpI, tmpJ] := GMyObjectArray[i, j];
-    GMyObjectArray[tmpI, tmpJ].Caption := Format('%2d-%2d', [tmpI, tmpJ]);
+    GArm.MoveToXYDirectly(m, n - 1);
+    GMyObjectArray[m, n] := GMyObjectArray[i, j];
+    GMyObjectArray[m, n].Caption := Format('%2d-%2d', [m, n]);
     GMyObjectArray[i, j] := nil;
     GArm.Flag := false;
     GArm.MyObject := nil;
-    tmpSourceResult := GetNextIJ(i, j);
+    sourceResult := GetNextIJ(i, j);
     Application.ProcessMessages;
   end;
   GArm.MoveToXYDirectly(INITARMI, INITARMJ);
