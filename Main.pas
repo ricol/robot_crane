@@ -1,4 +1,4 @@
-unit UnitMain;
+unit Main;
 
 interface
 
@@ -61,7 +61,7 @@ var
 
 implementation
 
-uses UnitTArm, UnitCommon, UnitTMyObject, UnitTMyPanel;
+uses Arm, Common, MyObject, MyPanel;
 
 {$R *.dfm}
 

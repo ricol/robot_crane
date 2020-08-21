@@ -1,10 +1,10 @@
-unit UnitTArm;
+unit Arm;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, UnitTMyPanel, UnitCommon, UnitTMyObject;
+  Dialogs, StdCtrls, ExtCtrls, MyPanel, Common, MyObject;
 
 type
   TArm = class

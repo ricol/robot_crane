@@ -1,10 +1,10 @@
-unit UnitTMyObject;
+unit MyObject;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, UnitTMyPanel, UnitCommon;
+  Dialogs, StdCtrls, ExtCtrls, MyPanel, Common;
 
 type
   TMyObject = class(TPanel)
