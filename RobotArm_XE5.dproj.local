@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitTMyPanel.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitTArm.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitMain.pas=D:\文档\RAD Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitTMyObject.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.dfm,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitMain.dfm=D:\文档\RAD Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.dproj,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\RobotArm.dproj=D:\文档\RAD Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitCommon.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas</Transaction>
-    <Transaction>2020/04/11 20:56:42.000.058,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\RobotArm_XE5.dproj=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\RobotArm.dproj</Transaction>
-    <Transaction>2020/08/22 02:53:28.000.099,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitCommon.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Common.pas</Transaction>
-    <Transaction>2020/08/22 02:53:32.000.115,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitMain.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Main.pas</Transaction>
-    <Transaction>2020/08/22 02:53:32.000.115,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitMain.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Main.dfm</Transaction>
-    <Transaction>2020/08/22 02:53:35.000.750,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitTArm.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Arm.pas</Transaction>
-    <Transaction>2020/08/22 02:53:40.000.978,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitTMyObject.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\MyObject.pas</Transaction>
-    <Transaction>2020/08/22 02:53:46.000.216,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitTMyPanel.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\MyPanel.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitMain.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitCommon.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dfm,D:\文档\RAD Studio\Projects\Unit1.dfm=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitMain.dfm</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.dproj,D:\文档\RAD Studio\Projects\Project1.dproj=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\RobotArm.dproj</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitTArm.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitTMyPanel.pas</Transaction>
+    <Transaction>1899/12/30 00:00:00.000.pas,D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\Unit1.pas=D:\文档\RAD Studio\Projects\Delphi\游戏开发\机器臂操作\UnitTMyObject.pas</Transaction>
+    <Transaction>2020/04/11 20:56:42.000.058,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\RobotArm.dproj=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\RobotArm_XE5.dproj</Transaction>
+    <Transaction>2020/08/22 02:53:28.000.099,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Common.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitCommon.pas</Transaction>
+    <Transaction>2020/08/22 02:53:32.000.115,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Main.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitMain.pas</Transaction>
+    <Transaction>2020/08/22 02:53:32.000.115,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Main.dfm=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitMain.dfm</Transaction>
+    <Transaction>2020/08/22 02:53:35.000.750,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\Arm.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitTArm.pas</Transaction>
+    <Transaction>2020/08/22 02:53:40.000.978,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\MyObject.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitTMyObject.pas</Transaction>
+    <Transaction>2020/08/22 02:53:46.000.216,C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\MyPanel.pas=C:\Documents and Settings\wangxinghe\My Documents\Programs\Delphi\Game\Robot\UnitTMyPanel.pas</Transaction>
   </Transactions>
 </BorlandProject>
